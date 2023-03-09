@@ -1,5 +1,5 @@
 from flask import request, Blueprint, render_template, url_for, redirect
-from flask_restful import Api, Resource
+from flask_restful import Api
 from CapaPresentacion.app.ConfigLectura.schema import ConfigLecturaSchema
 from CapaDatos.Modelos.MConfigLectura import ConfigLectura
 

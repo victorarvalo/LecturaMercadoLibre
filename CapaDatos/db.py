@@ -1,5 +1,6 @@
 # Creación de objeto db de SQLAlchemy y clase ModeloBase
 from flask_sqlalchemy import SQLAlchemy
+
 db = SQLAlchemy()
 
 class ModeloBase:
