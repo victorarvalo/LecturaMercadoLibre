@@ -1,6 +1,7 @@
 from flask import request, Blueprint, render_template, url_for, redirect
 from flask_restful import Api
 from CapaPresentacion.app.ConfigLectura.schema import DataArchivoSchema
+from CapaDatos.Modelos.MConfigLectura import DataArchivo
 
 datos_archivo_bp = Blueprint('datos_archivo_bp', __name__,
                              template_folder='templates',

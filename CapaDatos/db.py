@@ -34,3 +34,9 @@ class QuerysConfigLectura:
     def modificar_seleccion(cls, configuracion, valor):
         configuracion.seleccionado = valor
         db.session.commit()
+
+class QuerysDataArchivos:
+    @classmethod
+    def guardar_todos(cls, instancias):
+        db.session.add_all(instancias)
+        db.session.commit()
