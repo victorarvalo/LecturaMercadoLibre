@@ -23,3 +23,13 @@ class ModeloBase:
     @classmethod
     def simple_filter(cls, **kwargs):
         return cls.query.filter_by(**kwargs).all()
+
+class QuerysConfigLectura:
+    @classmethod
+    def configuracion_seleccionada(cls):
+        return cls.query.filter_by(seleccionado=True).first()
+
+    @classmethod
+    def modificar_seleccion(cls, configuracion, valor):
+        configuracion.seleccionado = valor
+        db.session.commit()

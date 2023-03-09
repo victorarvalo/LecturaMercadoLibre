@@ -8,7 +8,10 @@
         </a>
         <span class="badge badge-primary">Separador: {{ config['separador'] }}</span><br />
         <span class="badge badge-primary">Encoding: {{ config['encoding'] }}</span><br />
-        <span class="badge badge-primary">Seleccionado: {{ config['selecionado'] }}</span><br />
+        <span class="badge badge-primary">Seleccionado: {{config['seleccionado']}}</span><br />
+        {% if config['seleccionado'] != True %}
+            <a class="nav-link" href="{{ url_for('config_lectura_bp.modificarseleccionada', id_configuracion=config['id']) }}">Seleccionar</a>
+        {% endif %}
         <hr>
     {% endfor %}
 {% endblock %}

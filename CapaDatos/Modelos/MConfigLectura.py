@@ -1,6 +1,6 @@
 #Modelo para la configuración de la lectura de archivos
-from CapaDatos.db import db, ModeloBase
-class ConfigLectura(db.Model, ModeloBase):
+from CapaDatos.db import db, ModeloBase, QuerysConfigLectura
+class ConfigLectura(db.Model, ModeloBase, QuerysConfigLectura):
 
     id = db.Column(db.Integer, primary_key = True)
     formato = db.Column(db.String)

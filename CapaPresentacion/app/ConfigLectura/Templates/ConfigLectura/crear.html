@@ -1,0 +1,29 @@
+{% extends 'ConfigLectura/base.html' %}
+
+{% block content %}
+<h1>{% block title %} Crear una nueva configuración de lectura de archivo {% endblock %}</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="formato">Formato : </label>
+        <input type="text" name="formato"
+               placeholder=".CSV - .TXT - .jsonlines" class="form-control"
+               value="{{ request.form['formato'] }}"></input>
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="separador">Separador : </label>
+        <input type="text" name="separador"
+               placeholder=", - ; - \n" class="form-control"
+               value="{{ request.form['separador'] }}"></input>
+    </div>
+    <br />
+    <div>
+        <label for="encoding">Encoding : UTF-8</label>>
+    </div>
+    <br />
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+</form>
+{% endblock %}
