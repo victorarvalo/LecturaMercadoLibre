@@ -1,6 +1,6 @@
 # Modelo de recolección de datos a guardar en la base de datos
-from ...CapaDatos import db
-from ...CapaDatos.db import ModeloBase
+from CapaDatos import db
+from CapaDatos.db import ModeloBase
 
 class DataCollection(db.Model, ModeloBase):
 

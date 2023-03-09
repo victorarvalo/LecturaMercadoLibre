@@ -1,0 +1,10 @@
+{% extends 'ConfigLectura/base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Configuración de Lectura de Archivo {% endblock %}</h1>
+    <span class="badge badge-primary">ID: {{ config['id'] }}</span>
+    <p>Formato: {{ config['formato'] }}</p>
+    <p>Separador: {{ config['separador'] }}</p>
+    <p>Encoding: {{ config['encoding'] }}</p>
+    <p>Seleccionado: {{ config['selecionado'] }}</p>
+{% endblock %}

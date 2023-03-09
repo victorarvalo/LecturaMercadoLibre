@@ -1,0 +1,14 @@
+{% extends 'ConfigLectura/base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Listado de Configuraciones {% endblock %}</h1>
+    {% for config in configs %}
+        <a href="{{ url_for('config_lectura_bp.mostrar', id_configuracion=config['id'])}}">
+            <h4>Formato: {{ config['formato'] }}</h4>
+        </a>
+        <span class="badge badge-primary">Separador: {{ config['separador'] }}</span><br />
+        <span class="badge badge-primary">Encoding: {{ config['encoding'] }}</span><br />
+        <span class="badge badge-primary">Seleccionado: {{ config['selecionado'] }}</span><br />
+        <hr>
+    {% endfor %}
+{% endblock %}
