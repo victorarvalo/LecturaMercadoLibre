@@ -1,5 +1,7 @@
 from flask import request, Blueprint, render_template, url_for, redirect
 from flask_restful import Api
+
+import CapaNegocio.Negocio.principal
 from CapaPresentacion.app.ConfigLectura.schema import DataArchivoSchema
 from CapaDatos.Modelos.MConfigLectura import DataArchivo
 
@@ -10,3 +12,8 @@ datos_archivo_bp = Blueprint('datos_archivo_bp', __name__,
 datos_archivo_schema = DataArchivoSchema()
 
 api = Api(datos_archivo_bp)
+
+@datos_archivo_bp.route('/DatosArchivos/guardar', methods=('GET',))
+def guardar():
+    CapaNegocio.Negocio.principal.funcion()
+    return render_template('DatosArchivos/guardar.html')
