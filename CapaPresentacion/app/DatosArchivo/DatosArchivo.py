@@ -15,5 +15,6 @@ api = Api(datos_archivo_bp)
 
 @datos_archivo_bp.route('/DatosArchivos/guardar', methods=('GET',))
 def guardar():
-    CapaNegocio.Negocio.principal.funcion()
+    ubicacion_archivo = 'C:/Users/Victor/Downloads/technical_challenge_data.csv'
+    CapaNegocio.Negocio.principal.Procesamiento(ubicacion_archivo)
     return render_template('DatosArchivos/guardar.html')

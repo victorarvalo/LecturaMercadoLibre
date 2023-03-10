@@ -1,5 +1,6 @@
 # Creación de objeto db de SQLAlchemy y clase ModeloBase
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import between
 
 db = SQLAlchemy()
 
@@ -40,3 +41,14 @@ class QuerysDataArchivos:
     def guardar_todos(cls, instancias):
         db.session.add_all(instancias)
         db.session.commit()
+    @classmethod
+    def obtener_rango_ids(self, id_inicial, id_final):
+        return db.session.query(self).where(between(self.id_data_archivo,id_inicial,id_final)).all()
+
+    @classmethod
+    def modificar_llave(cls, dataArchivo, valor):
+        dataArchivo.llave = valor
+        db.session.commit()
+    @classmethod
+    def contar_registros(cls):
+        return db.session.query(cls).count()
