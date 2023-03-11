@@ -46,9 +46,23 @@ class QuerysDataArchivos:
         return db.session.query(self).where(between(self.id_data_archivo,id_inicial,id_final)).all()
 
     @classmethod
+    def obtener_rango_ids_no_vacias(self, id_inicial, id_final):
+        return db.session.query(self)\
+            .where((between(self.id_data_archivo, id_inicial, id_final)) &
+                   (self.llave != ''))\
+            .all()
+
+    @classmethod
     def modificar_llave(cls, dataArchivo, valor):
         dataArchivo.llave = valor
         db.session.commit()
     @classmethod
     def contar_registros(cls):
         return db.session.query(cls).count()
+
+class QuerysBodyItems:
+
+    @classmethod
+    def guardar_todos(cls, instancias):
+        db.session.add_all(instancias)
+        db.session.commit

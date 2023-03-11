@@ -1,3 +1,5 @@
+import datetime
+
 from flask import request, Blueprint, render_template, url_for, redirect
 from flask_restful import Api
 
@@ -15,6 +17,10 @@ api = Api(datos_archivo_bp)
 
 @datos_archivo_bp.route('/DatosArchivos/guardar', methods=('GET',))
 def guardar():
+    fecha_inicial = datetime.datetime.now()
     ubicacion_archivo = 'C:/Users/Victor/Downloads/technical_challenge_data.csv'
-    CapaNegocio.Negocio.principal.Procesamiento(ubicacion_archivo)
-    return render_template('DatosArchivos/guardar.html')
+    #CapaNegocio.Negocio.principal.procesamiento(ubicacion_archivo)
+    CapaNegocio.Negocio.principal.consumirAPIMercadoLibre()
+    fecha_final = datetime.datetime.now()
+    diferencia = fecha_final - fecha_inicial
+    return render_template('DatosArchivos/guardar.html', tiempo=diferencia)

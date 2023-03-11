@@ -26,3 +26,19 @@ class DataArchivo(db.Model, ModeloBase, QuerysDataArchivos):
         self.id = id
         self.llave = ''
 
+class BodyItems(db.Model, ModeloBase):
+
+    llave = db.Column(db.String, primary_key=True)
+    price = db.Column(db.Float)
+    stop_time = db.Column(db.String)
+    category_id = db.Column(db.String)
+    currency_id = db.Column(db.String)
+    seller_id = db.Column(db.Integer)
+
+    def __init__(self, llave, price, start_time, category_id, currency_id, seller_id):
+        self.llave = llave
+        self.price = price
+        self.start_time = start_time
+        self.category_id = category_id
+        self.currency_id = currency_id
+        self.seller_id = seller_id
