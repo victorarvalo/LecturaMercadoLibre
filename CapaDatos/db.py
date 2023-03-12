@@ -74,5 +74,15 @@ class QuerysBodyItems:
         lista_tuplas_category_ids = db.session.query(cls.category_id).distinct().all()
         lista_category_ids = []
         for tupla in lista_tuplas_category_ids:
-            lista_category_ids.append(tupla[0])#Solo tomamos el primer valos de la tupla
+            lista_category_ids.append(tupla[0])#Solo tomamos el primer valor de la tupla
         return  lista_category_ids
+
+    @classmethod
+    def distinct_currency_id(cls):
+        lista_tuplas_currency_ids = db.session.query(cls.currency_id).distinct().all()
+        lista_currency_ids = []
+        for tupla in lista_tuplas_currency_ids:
+            #no tomamos los currency_id vacios
+            if tupla[0] != '':
+                lista_currency_ids.append(tupla[0])#Solo tomamos el primer valor de la tupla
+        return lista_currency_ids

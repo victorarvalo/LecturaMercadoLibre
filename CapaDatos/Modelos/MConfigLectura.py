@@ -54,3 +54,12 @@ class Category(db.Model, ModeloBase):
     def __init__(self, id, name):
         self.id = id
         self.name = name
+
+class Currency(db.Model, ModeloBase):
+
+    id = db.Column(db.String, primary_key=True)
+    description = db.Column(db.String)
+
+    def __init__(self, id, description):
+        self.id = id
+        self.description = description
