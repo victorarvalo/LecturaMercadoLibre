@@ -38,7 +38,6 @@ class ConstruirCollecionDatos:
 
     def validarMoneda(self, dato):
         if dato is not None:
-            print(dato)
             return dato
         else:
             return Currency('','')

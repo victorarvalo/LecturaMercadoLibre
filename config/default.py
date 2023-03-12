@@ -5,3 +5,5 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///data.sqlite'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SHOW_SQLALCHEMY_LOG_MESSAGES = False
 ERROR_404_HELP = False
+#Configuracion de archivo
+UPLOAD_FOLDER = '../Archivos'

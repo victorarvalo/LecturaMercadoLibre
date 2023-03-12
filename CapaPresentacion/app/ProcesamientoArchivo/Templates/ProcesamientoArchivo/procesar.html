@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Procesar</title>
+</head>
+<body>
+    <form action="/ProcesamientoArchivo/iniciar" method="POST" enctype="multipart/form-data">
+         <label>Nombre del archivo a Procesar: {{ filename }}</label>
+        <br />
+         <input type="text" name="filename" value="{{ request.form['filename'] }}"
+                style="display:none">
+        <br />
+         <input type="submit" />
+    </form>
+</body>
+</html>

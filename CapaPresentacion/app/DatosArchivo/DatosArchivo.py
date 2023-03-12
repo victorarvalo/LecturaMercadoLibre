@@ -1,11 +1,10 @@
 import datetime
 
-from flask import request, Blueprint, render_template, url_for, redirect
+from flask import Blueprint, render_template
 from flask_restful import Api
 
 import CapaNegocio.Negocio.principal
 from CapaPresentacion.app.ConfigLectura.schema import DataArchivoSchema
-from CapaDatos.Modelos.MConfigLectura import DataArchivo, BodyItems
 
 datos_archivo_bp = Blueprint('datos_archivo_bp', __name__,
                              template_folder='templates',

@@ -2,6 +2,7 @@ from flask import Flask
 from CapaDatos.db import db
 from .ConfigLectura.ConfigLectura import config_lectura_bp
 from .DatosArchivo.DatosArchivo import datos_archivo_bp
+from .ProcesamientoArchivo.ProcesamientoArchivo import procesamiento_archivo_bp
 from .ext import ma, migrate
 
 
@@ -17,4 +18,5 @@ def create_app(settings_module):
     # Registra los blueprints
     app.register_blueprint(datos_archivo_bp)
     app.register_blueprint(config_lectura_bp)
+    app.register_blueprint(procesamiento_archivo_bp)
     return app
