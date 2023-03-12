@@ -2,6 +2,7 @@
 from CapaConsumoRest.ConsultaCategoria.CConsultaCategorias import ConsultaCategorias
 from CapaConsumoRest.ConsultaUsers.CConsultaUsuarios import ConsultaUsuarios
 from CapaConsumoRest.ConsumoCurrencies.CConsultaCurrencies import ConsultaCurrencies
+from CapaNegocio.Negocio.ConstruccionColleccionDatos.ConstruirColleccionDatos import ConstruirCollecionDatos
 from CapaNegocio.Negocio.LecturaArchivo.LecturaCSV import LecturaCSV
 from CapaNegocio.Negocio.CreacionLlaves.CreacionLlaves import CreacionLlaves
 from CapaConsumoRest.ConsultaItems.CConsultaItems import  ConsultaItems
@@ -38,5 +39,9 @@ def consumirAPIMercadoLibreMonedas():
 def consumirAPIMercadoLibreUsuarios():
     consultar_usuarios = ConsultaUsuarios()
     consultar_usuarios.consultarUsuario()
+
+def construirDataCollection():
+    contruir_colleccion_datos = ConstruirCollecionDatos()
+    contruir_colleccion_datos.construirCollecionDatos()
 
 

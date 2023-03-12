@@ -35,3 +35,13 @@ class CurrencySchema(ma.Schema):
 class SellerSchema(ma.Schema):
     id = fields.Integer(dump_only=True)
     nickname = fields.String()
+
+class ColleccionDatosSchema(ma.Schema):
+    id_data_collection = fields.Integer(dump_only=True)
+    site = fields.String()
+    id = fields.Integer()
+    price = fields.String()
+    end_time = fields.String()
+    name = fields.String()
+    description = fields.String()
+    nickname = fields.String()

@@ -1,7 +1,6 @@
 # Creación de objeto db de SQLAlchemy y clase ModeloBase
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import between
-from sqlalchemy.orm import load_only
 
 db = SQLAlchemy()
 
@@ -27,6 +26,12 @@ class ModeloBase:
     def simple_filter(cls, **kwargs):
         return cls.query.filter_by(**kwargs).all()
 
+    @classmethod
+    def contar_registros(cls):
+        return db.session.query(cls).count()
+
+
+
 class QuerysConfigLectura:
     @classmethod
     def configuracion_seleccionada(cls):
@@ -36,6 +41,7 @@ class QuerysConfigLectura:
     def modificar_seleccion(cls, configuracion, valor):
         configuracion.seleccionado = valor
         db.session.commit()
+
 
 class QuerysDataArchivos:
     @classmethod
@@ -57,9 +63,10 @@ class QuerysDataArchivos:
     def modificar_llave(cls, dataArchivo, valor):
         dataArchivo.llave = valor
         db.session.commit()
-    @classmethod
-    def contar_registros(cls):
-        return db.session.query(cls).count()
+
+    def buscar_llave(self, llave):
+        return db.session.query(self).where(self.llave == llave).first()
+
 
 class QuerysBodyItems:
 
@@ -68,6 +75,10 @@ class QuerysBodyItems:
         db.session.add_all(instancias)
         print(f'inst: {instancias}, len: {len(instancias)}')
         db.session.commit
+
+    @classmethod
+    def obtener_rango_ids(self, id_inicial, id_final):
+        return db.session.query(self).where(between(self.id, id_inicial, id_final)).all()
 
     @classmethod
     def distintc_category_id(cls):
@@ -96,3 +107,20 @@ class QuerysBodyItems:
             if tupla[0] != '':
                 lista_seller_ids.append(tupla[0])  # Solo tomamos el primer valor de la tupla
         return lista_seller_ids
+
+class QuerysCategory:
+
+    @classmethod
+    def buscar_category_id(cls, category_id):
+        return db.session.query(cls).where(cls.id == category_id).first()
+
+class QueryCurrency:
+    @classmethod
+    def buscar_currency_id(cls, currency_id):
+        return db.session.query(cls).where(cls.id == currency_id).first()
+
+
+class QuerySeller:
+    @classmethod
+    def buscar_selle_id(cls, seller_id):
+        return db.session.query(cls).where(cls.id == seller_id).first()

@@ -19,11 +19,12 @@ api = Api(datos_archivo_bp)
 def guardar():
     fecha_inicial = datetime.datetime.now()
     ubicacion_archivo = 'C:/Users/Victor/Downloads/technical_challenge_data.csv'
-    #CapaNegocio.Negocio.principal.procesamiento(ubicacion_archivo)
-    #CapaNegocio.Negocio.principal.consumirAPIMercadoLibreItem()
-    #CapaNegocio.Negocio.principal.consumirAPIMercadoLibreCategoria()
-    #CapaNegocio.Negocio.principal.consumirAPIMercadoLibreMonedas()
+    CapaNegocio.Negocio.principal.procesamiento(ubicacion_archivo)
+    CapaNegocio.Negocio.principal.consumirAPIMercadoLibreItem()
+    CapaNegocio.Negocio.principal.consumirAPIMercadoLibreCategoria()
+    CapaNegocio.Negocio.principal.consumirAPIMercadoLibreMonedas()
     CapaNegocio.Negocio.principal.consumirAPIMercadoLibreUsuarios()
+    CapaNegocio.Negocio.principal.construirDataCollection()
     fecha_final = datetime.datetime.now()
     diferencia = fecha_final - fecha_inicial
     return render_template('DatosArchivos/guardar.html', tiempo=diferencia)
