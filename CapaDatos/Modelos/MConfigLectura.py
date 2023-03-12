@@ -45,3 +45,12 @@ class BodyItems(db.Model, ModeloBase, QuerysBodyItems):
         self.category_id = category_id
         self.currency_id = currency_id
         self.seller_id = seller_id
+
+class Category(db.Model, ModeloBase):
+
+    id = db.Column(db.String, primary_key=True)
+    name = db.Column(db.String)
+
+    def __init__(self, id, name):
+        self.id = id
+        self.name = name

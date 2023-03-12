@@ -23,3 +23,7 @@ class BodyItemsSchema(ma.Schema):
     category_id = fields.String()
     currency_id = fields.String()
     seller_id = fields.Integer()
+
+class CategorySchema(ma.Schema):
+    id = fields.String(dump_only=True)
+    name = fields.String()

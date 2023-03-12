@@ -4,10 +4,10 @@ import multiprocessing
 
 import requests
 
-from CapaDatos.Modelos.MConfigLectura import BodyItems
+from CapaDatos.Modelos.MConfigLectura import BodyItems, Category
 
 
-class MultiProcesoItems(multiprocessing.Process):
+class MultiProcesoCategory(multiprocessing.Process):
 
     def __init__(self, tareas_cola, resultados_cola):
         multiprocessing.Process.__init__(self)
@@ -26,31 +26,22 @@ class MultiProcesoItems(multiprocessing.Process):
 
 class Tarea:
 
-    def __init__(self, data):
-        self.data = data
+    def __init__(self, category_id):
+        self.category_id = category_id
 
     def __call__(self):
-        # Realizamos la consulta de Items
-        str_consulta = 'https://api.mercadolibre.com/items?ids=' + self.data.llave
+        # Realizamos la consulta de Category
+        str_consulta = f'https://api.mercadolibre.com/categories/{self.category_id}'
         resultado = requests.get(str_consulta)
         # Creamos json con el texto de la respuesta
         json_resultado = json.loads(resultado.text)
-        #Obtenemos el código de la respuesta
-        codigo = json_resultado[0].get('code')
-        if codigo == 200:
-            # Obtenemos el diccionario de body
-            body_diccionario = json_resultado[0].get('body')
-            # Creamos el objeto BodyItems
-            body_item = BodyItems(
-                self.validarDatos('id', body_diccionario.get('id')),
-                self.validarDatos('price', body_diccionario.get('price')),
-                self.validarDatos('start_time', body_diccionario.get('start_time')),
-                self.validarDatos('category_id', body_diccionario.get('category_id')),
-                self.validarDatos('currency_id', body_diccionario.get('currency_id')),
-                self.validarDatos('seller_id', body_diccionario.get('seller_id'))
-            )
-            return body_item
+        # Obtenemos el código de la respuesta
+        if resultado.status_code == 200:
+            # Creamos el objeto Category
+            category = Category(json_resultado.get('id'), json_resultado.get('name'))
+            return category
         else:
-            return f'Error al consumir con llave {self.data.llave}'
+            return f'Error al consumir con id {self.category_id}'
+
 
 

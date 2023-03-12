@@ -20,7 +20,8 @@ def guardar():
     fecha_inicial = datetime.datetime.now()
     ubicacion_archivo = 'C:/Users/Victor/Downloads/technical_challenge_data.csv'
     #CapaNegocio.Negocio.principal.procesamiento(ubicacion_archivo)
-    CapaNegocio.Negocio.principal.consumirAPIMercadoLibreItem()
+    #CapaNegocio.Negocio.principal.consumirAPIMercadoLibreItem()
+    CapaNegocio.Negocio.principal.consumirAPIMercadoLibreCategoria()
     fecha_final = datetime.datetime.now()
     diferencia = fecha_final - fecha_inicial
     return render_template('DatosArchivos/guardar.html', tiempo=diferencia)

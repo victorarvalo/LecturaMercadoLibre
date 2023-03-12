@@ -70,5 +70,9 @@ class QuerysBodyItems:
         db.session.commit
 
     @classmethod
-    def distintc_columna(cls, nombre_columna):
-        return db.session.query(cls).options(load_only(nombre_columna)).distinct().all()
+    def distintc_category_id(cls):
+        lista_tuplas_category_ids = db.session.query(cls.category_id).distinct().all()
+        lista_category_ids = []
+        for tupla in lista_tuplas_category_ids:
+            lista_category_ids.append(tupla[0])#Solo tomamos el primer valos de la tupla
+        return  lista_category_ids
