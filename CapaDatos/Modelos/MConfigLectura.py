@@ -1,5 +1,7 @@
 #Modelo para la configuración de la lectura de archivos
-from CapaDatos.db import db, ModeloBase, QuerysConfigLectura, QuerysDataArchivos
+from CapaDatos.db import db, ModeloBase, QuerysConfigLectura, QuerysDataArchivos, QuerysBodyItems
+
+
 class ConfigLectura(db.Model, ModeloBase, QuerysConfigLectura):
 
     id = db.Column(db.Integer, primary_key = True)
@@ -26,11 +28,12 @@ class DataArchivo(db.Model, ModeloBase, QuerysDataArchivos):
         self.id = id
         self.llave = ''
 
-class BodyItems(db.Model, ModeloBase):
+class BodyItems(db.Model, ModeloBase, QuerysBodyItems):
 
-    llave = db.Column(db.String, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    llave = db.Column(db.String)
     price = db.Column(db.Float)
-    stop_time = db.Column(db.String)
+    start_time = db.Column(db.String)
     category_id = db.Column(db.String)
     currency_id = db.Column(db.String)
     seller_id = db.Column(db.Integer)

@@ -1,6 +1,7 @@
 # Creación de objeto db de SQLAlchemy y clase ModeloBase
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import between
+from sqlalchemy.orm import load_only
 
 db = SQLAlchemy()
 
@@ -63,6 +64,11 @@ class QuerysDataArchivos:
 class QuerysBodyItems:
 
     @classmethod
-    def guardar_todos(cls, instancias):
+    def guardar_item_todos(cls, instancias):
         db.session.add_all(instancias)
+        print(f'inst: {instancias}, len: {len(instancias)}')
         db.session.commit
+
+    @classmethod
+    def distintc_columna(cls, nombre_columna):
+        return db.session.query(cls).options(load_only(nombre_columna)).distinct().all()

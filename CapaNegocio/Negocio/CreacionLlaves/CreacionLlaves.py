@@ -1,6 +1,4 @@
 #Clase para la creación de llaves
-from sqlalchemy import update
-from sqlalchemy.sql.expression import bindparam
 from CapaDatos.Modelos.MConfigLectura import DataArchivo
 class CreacionLlaves:
 

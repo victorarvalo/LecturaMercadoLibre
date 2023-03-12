@@ -20,7 +20,17 @@ def leerYGuardarDatos(ubicacion_archivo):
         elif extencion_archivo[1] == 'jsonlines':
             s = ''
 
-def consumirAPIMercadoLibre():
+def consumirAPIMercadoLibreItem():
     consulta_items = ConsultaItems()
     consulta_items.consultarItems()
+
+def consumirAPIMercadoLibreCategoria():
+    pass
+
+def consumirAPIMercadoLibreMonedas():
+    pass
+
+def consumirAPIMercadoLibreUsuarios():
+    pass
+
 

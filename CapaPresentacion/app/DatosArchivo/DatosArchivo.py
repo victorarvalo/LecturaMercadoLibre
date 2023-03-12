@@ -5,7 +5,7 @@ from flask_restful import Api
 
 import CapaNegocio.Negocio.principal
 from CapaPresentacion.app.ConfigLectura.schema import DataArchivoSchema
-from CapaDatos.Modelos.MConfigLectura import DataArchivo
+from CapaDatos.Modelos.MConfigLectura import DataArchivo, BodyItems
 
 datos_archivo_bp = Blueprint('datos_archivo_bp', __name__,
                              template_folder='templates',
@@ -20,7 +20,7 @@ def guardar():
     fecha_inicial = datetime.datetime.now()
     ubicacion_archivo = 'C:/Users/Victor/Downloads/technical_challenge_data.csv'
     #CapaNegocio.Negocio.principal.procesamiento(ubicacion_archivo)
-    CapaNegocio.Negocio.principal.consumirAPIMercadoLibre()
+    CapaNegocio.Negocio.principal.consumirAPIMercadoLibreItem()
     fecha_final = datetime.datetime.now()
     diferencia = fecha_final - fecha_inicial
     return render_template('DatosArchivos/guardar.html', tiempo=diferencia)

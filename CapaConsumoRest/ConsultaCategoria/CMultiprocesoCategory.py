@@ -53,16 +53,4 @@ class Tarea:
         else:
             return f'Error al consumir con llave {self.data.llave}'
 
-    def validarDatos(self, item, valor):
-        #Validamos los items id, start_time, category_id, currency_id
-        if item == 'id' or item == 'start_time' or item == 'category_id' or item == 'currency_id':
-            if isinstance(valor, str):
-                return valor
-            else:
-                return ''
-        #Validamos price y seller_id
-        if item == 'price' or item == 'seller_id':
-            if isinstance(valor, float) or isinstance(valor, int):
-                return valor
-            else:
-                return 0
+
