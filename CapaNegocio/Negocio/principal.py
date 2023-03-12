@@ -1,5 +1,6 @@
 #Script Principal de Lectura de Archivo
 from CapaConsumoRest.ConsultaCategoria.CConsultaCategorias import ConsultaCategorias
+from CapaConsumoRest.ConsultaUsers.CConsultaUsuarios import ConsultaUsuarios
 from CapaConsumoRest.ConsumoCurrencies.CConsultaCurrencies import ConsultaCurrencies
 from CapaNegocio.Negocio.LecturaArchivo.LecturaCSV import LecturaCSV
 from CapaNegocio.Negocio.CreacionLlaves.CreacionLlaves import CreacionLlaves
@@ -35,6 +36,7 @@ def consumirAPIMercadoLibreMonedas():
     consuta_currencies.consultarCurrencie()
 
 def consumirAPIMercadoLibreUsuarios():
-    pass
+    consultar_usuarios = ConsultaUsuarios()
+    consultar_usuarios.consultarUsuario()
 
 

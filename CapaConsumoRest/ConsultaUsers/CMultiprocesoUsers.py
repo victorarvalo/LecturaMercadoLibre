@@ -4,10 +4,10 @@ import multiprocessing
 
 import requests
 
-from CapaDatos.Modelos.MConfigLectura import Currency
+from CapaDatos.Modelos.MConfigLectura import Seller
 
 
-class MultiProcesoCurrency(multiprocessing.Process):
+class MultiProcesoUser(multiprocessing.Process):
 
     def __init__(self, tareas_cola, resultados_cola):
         multiprocessing.Process.__init__(self)
@@ -26,22 +26,23 @@ class MultiProcesoCurrency(multiprocessing.Process):
 
 class Tarea:
 
-    def __init__(self, currency_id):
-        self.currency_id = currency_id
+    def __init__(self, seller_id):
+        self.seller_id = seller_id
 
     def __call__(self):
         # Realizamos la consulta de Category
-        str_consulta = f'https://api.mercadolibre.com/currencies/{self.currency_id}'
+        str_consulta = f'https://api.mercadolibre.com/users/{self.seller_id}'
         resultado = requests.get(str_consulta)
         # Creamos json con el texto de la respuesta
         json_resultado = json.loads(resultado.text)
         # Obtenemos el código de la respuesta
         if resultado.status_code == 200:
             # Creamos el objeto Category
-            currency = Currency(json_resultado.get('id'), json_resultado.get('description'))
-            return currency
+            seller = Seller
+            category = Seller(json_resultado.get('id'), json_resultado.get('nickname'))
+            return category
         else:
-            return f'Error al consumir con id {self.currency_id}'
+            return f'Error al consumir con id {self.seller_id}'
 
 
 

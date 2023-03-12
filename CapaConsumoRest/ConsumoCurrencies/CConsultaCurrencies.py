@@ -1,7 +1,7 @@
 #Esta clase se encarga de hacer el consumo del endpoint Categorias de Mercado Libre
 import multiprocessing
 
-from CapaConsumoRest.ConsumoCurrencies.CMultiprocesoCurrency import Tarea, MultiProcesoCategory
+from CapaConsumoRest.ConsumoCurrencies.CMultiprocesoCurrency import MultiProcesoCurrency, Tarea
 from CapaDatos.Modelos.MConfigLectura import BodyItems
 
 
@@ -23,7 +23,7 @@ class ConsultaCurrencies:
         resultados = multiprocessing.Queue()
         for currency_id in currency_id_grupo:
             tareas.put(Tarea(currency_id))
-        con = MultiProcesoCategory(tareas, resultados)
+        con =  MultiProcesoCurrency(tareas, resultados)
         con.start()
         tareas.join()
         cantidad = len(currency_id_grupo)

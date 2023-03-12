@@ -86,3 +86,13 @@ class QuerysBodyItems:
             if tupla[0] != '':
                 lista_currency_ids.append(tupla[0])#Solo tomamos el primer valor de la tupla
         return lista_currency_ids
+
+    @classmethod
+    def distinct_seller_id(cls):
+        lista_tuplas_seller_ids = db.session.query(cls.seller_id).distinct().all()
+        lista_seller_ids = []
+        for tupla in lista_tuplas_seller_ids:
+            # no tomamos los currency_id vacios
+            if tupla[0] != '':
+                lista_seller_ids.append(tupla[0])  # Solo tomamos el primer valor de la tupla
+        return lista_seller_ids

@@ -22,7 +22,8 @@ def guardar():
     #CapaNegocio.Negocio.principal.procesamiento(ubicacion_archivo)
     #CapaNegocio.Negocio.principal.consumirAPIMercadoLibreItem()
     #CapaNegocio.Negocio.principal.consumirAPIMercadoLibreCategoria()
-    CapaNegocio.Negocio.principal.consumirAPIMercadoLibreMonedas()
+    #CapaNegocio.Negocio.principal.consumirAPIMercadoLibreMonedas()
+    CapaNegocio.Negocio.principal.consumirAPIMercadoLibreUsuarios()
     fecha_final = datetime.datetime.now()
     diferencia = fecha_final - fecha_inicial
     return render_template('DatosArchivos/guardar.html', tiempo=diferencia)

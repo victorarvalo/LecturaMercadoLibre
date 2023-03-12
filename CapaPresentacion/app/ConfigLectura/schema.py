@@ -31,3 +31,7 @@ class CategorySchema(ma.Schema):
 class CurrencySchema(ma.Schema):
     id = fields.String(dump_only=True)
     description = fields.String()
+
+class SellerSchema(ma.Schema):
+    id = fields.Integer(dump_only=True)
+    nickname = fields.String()

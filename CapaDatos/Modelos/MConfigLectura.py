@@ -63,3 +63,12 @@ class Currency(db.Model, ModeloBase):
     def __init__(self, id, description):
         self.id = id
         self.description = description
+
+class Seller(db.Model, ModeloBase):
+
+    id = db.Column(db.Integer, primary_key=True)
+    nickname = db.Column(db.String)
+
+    def __init__(self, id, nickname):
+        self.id = id
+        self.nickname = nickname
