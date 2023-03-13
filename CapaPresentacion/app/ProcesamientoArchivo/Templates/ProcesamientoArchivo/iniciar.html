@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Iniciar</title>
-</head>
-<body>
-Tiempo de ejecución = {{ tiempo }}
-</body>
-</html>
+{% extends 'ProcesamientoArchivo/baseProcesamiento.html' %}
+
+{% block content %}
+<h1>{% block title %} Resultado Procesamiento del Archivo {% endblock %}</h1>
+<br />
+<br />
+<span class="badge badge-primary">Tiempo de Ejecución: {{ respuestas[0] }}</span><br />
+<span class="badge badge-primary">Resultado: {{ respuestas[1] }}</span><br />
+
+{% endblock %}

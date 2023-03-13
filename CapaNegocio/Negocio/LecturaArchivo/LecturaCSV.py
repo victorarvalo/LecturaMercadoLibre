@@ -1,7 +1,6 @@
 # Clase para lectura de archivos CSV
 import csv
 from CapaDatos.Modelos.MConfigLectura import DataArchivo
-from CapaNegocio.Negocio.CValidarConfiguracion import ValidarConfiguracion
 class LecturaCSV:
 
     def __init__(self, ubicacion_archivo):

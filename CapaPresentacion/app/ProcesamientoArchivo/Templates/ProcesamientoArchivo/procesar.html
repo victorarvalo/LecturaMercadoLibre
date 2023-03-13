@@ -1,17 +1,16 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="UTF-8">
-    <title>Procesar</title>
-</head>
-<body>
-    <form action="/ProcesamientoArchivo/iniciar" method="POST" enctype="multipart/form-data">
-         <label>Nombre del archivo a Procesar: {{ filename }}</label>
+{% extends 'ProcesamientoArchivo/baseProcesamiento.html' %}
+
+{% block content %}
+<h1>{% block title %} Procesar Archivo {% endblock %}</h1>
+<br />
+<br />
+<form action="/ProcesamientoArchivo/iniciar" method="POST" enctype="multipart/form-data">
+         <label>Nombre del archivo a Procesar: </label>
         <br />
-         <input type="text" name="filename" value="{{ request.form['filename'] }}"
-                style="display:none">
+         <input type="text" name="filename" value="{{ filename }}"
+                readonly placeholder="{{ filename }}" style="width : 500px; heigth : 3px"></input>
         <br />
          <input type="submit" />
     </form>
-</body>
-</html>
+{% endblock %}
+

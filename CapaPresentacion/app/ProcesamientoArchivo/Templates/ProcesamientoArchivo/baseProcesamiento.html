@@ -12,9 +12,9 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('config_lectura_bp.listar') }}">Configuraciones</a>
-        <a class="nav-link" href="{{ url_for('config_lectura_bp.crear') }}">Nueva Configuración</a>
+        <a class="navbar-brand" href="{{ url_for('procesamiento_archivo_bp.ver_registros') }}">Ver Registros</a>
         <a class="navbar-brand" href="{{ url_for('procesamiento_archivo_bp.cargar_archivo')}}">Subir Archivo</a>
+        <a class="nav-link" href="{{ url_for('config_lectura_bp.crear') }}">Nueva Configuración</a>
     </nav>
     <div class="container">
         {% for message in get_flashed_messages() %}

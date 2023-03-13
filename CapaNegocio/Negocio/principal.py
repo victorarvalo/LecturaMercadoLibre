@@ -2,27 +2,47 @@
 from CapaConsumoRest.ConsultaCategoria.CConsultaCategorias import ConsultaCategorias
 from CapaConsumoRest.ConsultaUsers.CConsultaUsuarios import ConsultaUsuarios
 from CapaConsumoRest.ConsumoCurrencies.CConsultaCurrencies import ConsultaCurrencies
+from CapaNegocio.Negocio.CValidarConfiguracion import ValidarConfiguracion
 from CapaNegocio.Negocio.ConstruccionColleccionDatos.ConstruirColleccionDatos import ConstruirCollecionDatos
 from CapaNegocio.Negocio.LecturaArchivo.LecturaCSV import LecturaCSV
 from CapaNegocio.Negocio.CreacionLlaves.CreacionLlaves import CreacionLlaves
 from CapaConsumoRest.ConsultaItems.CConsultaItems import  ConsultaItems
-def procesamiento(ubicacion_archivo):
+import csv
+def procesamiento(ubicacion_archivo, configuracion_archivo):
+    print(ubicacion_archivo)
     # realizar la lectura del archivo y escritura de datos en la base de datos
-    leerYGuardarDatos(ubicacion_archivo)
+    mensaje = leerYGuardarDatos(ubicacion_archivo, configuracion_archivo)
+    #Validamos si hay mensaje de error
+    if isinstance(mensaje, str):
+        return mensaje
     #Creación de llaves para consumo de API Mercado Libre
     creacion_llaves = CreacionLlaves()
     creacion_llaves.crear_llaves()
-def leerYGuardarDatos(ubicacion_archivo):
+def leerYGuardarDatos(ubicacion_archivo, configuracion_archivo):
     extencion_archivo = ubicacion_archivo.split('.')
     if len(extencion_archivo) > 1:
         if extencion_archivo[1] == 'csv':
-            csv = LecturaCSV(ubicacion_archivo)
+            print('excel')
+            #Realizamos las validaciones del archivo de Excel
+            if ValidarConfiguracion.validaFormato(configuracion_archivo.formato, extencion_archivo[1]):
+                #Realizamos la lectura del archivo para validar el separador
+                with open(ubicacion_archivo, newline='') as csvfile:
+                    dialect = csv.Sniffer().sniff(csvfile.read(1024))
+                    csvfile.seek(0)
+                    if not ValidarConfiguracion.validaSeparador(configuracion_archivo.separador, dialect.delimiter):
+                        return 'Separador del archivo erroneo'
+            else:
+                return 'Formato de archivo erroneo'
+            csv_archivo = LecturaCSV(ubicacion_archivo)
             # Pendiente hacer la validación de configuraciones
-            csv.lectura()
+            csv_archivo.lectura()
+            return None
         elif extencion_archivo[1] == 'txt':
-            r = ''
+            return None
         elif extencion_archivo[1] == 'jsonlines':
-            s = ''
+            return None
+        else:
+            return 'El archivo no tiene una extención valida (.csv - .txt - .jsonlines)'
 
 def consumirAPIMercadoLibreItem():
     consulta_items = ConsultaItems()

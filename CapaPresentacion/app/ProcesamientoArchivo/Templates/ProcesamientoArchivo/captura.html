@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Capturar Archivo</title>
-</head>
-<body>
-    <form action="/ProcesamientoArchivo/procesar" method="POST" enctype="multipart/form-data">
-         <input type="file" name="archivo">
+{% extends 'ProcesamientoArchivo/baseProcesamiento.html' %}
+
+{% block content %}
+<h1>{% block title %} Capturar Archivo {% endblock %}</h1>
+<br />
+<br />
+<form action="/ProcesamientoArchivo/procesar" method="POST" enctype="multipart/form-data">
+         <input type="file" name="archivo"><br/>
          <input type="submit">
     </form>
-</body>
-</html>
+{% endblock %}
