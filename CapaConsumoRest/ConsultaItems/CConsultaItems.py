@@ -11,6 +11,8 @@ from CapaPresentacion.app.ConfigLectura.schema import BodyItemsSchema
 class ConsultaItems:
 
     def consultarItems(self):
+        # Limpiamos la tabla BodyItems
+        BodyItems.query.delete()
         cantidadRegistros = DataArchivo.contar_registros()
         contadorRegistros = 1
         while contadorRegistros <= cantidadRegistros:

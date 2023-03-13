@@ -5,12 +5,14 @@ import multiprocessing
 import requests
 
 from CapaConsumoRest.ConsultaUsers.CMultiprocesoUsers import MultiProcesoUser, Tarea
-from CapaDatos.Modelos.MConfigLectura import BodyItems
+from CapaDatos.Modelos.MConfigLectura import BodyItems, Seller
 
 
 class ConsultaUsuarios:
 
     def consultarUsuario(self):
+        # Limpiamos la tabla Seller
+        Seller.query.delete()
         # Obtenemos los diferentes Id's de usuario desde la tabla body_items
         usuarios_id_lista = BodyItems.distinct_seller_id()
         print(len(usuarios_id_lista))
@@ -36,8 +38,8 @@ class ConsultaUsuarios:
             if not isinstance(result, str):
                 listaResultados.append(result)
             cantidad -= 1
-        self.guardarCategory(listaResultados)
+        self.guardarUsuarios(listaResultados)
 
-    def guardarCategory(self, listaResultados):
+    def guardarUsuarios(self, listaResultados):
         for resultado in listaResultados:
             resultado.save()

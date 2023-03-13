@@ -11,6 +11,8 @@ from CapaDatos.Modelos.MConfigLectura import BodyItems, Category
 class ConsultaCategorias:
 
     def consultarCategoria(self):
+        # Limpiamos la tabla Category
+        Category.query.delete()
         # Obtenemos los diferentes Id's de categorias desde la tabla body_items
         category_id_lista = BodyItems.distintc_category_id()
         contadorRegistros = 0

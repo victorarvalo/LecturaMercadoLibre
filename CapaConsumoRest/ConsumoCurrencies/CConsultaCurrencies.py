@@ -2,12 +2,14 @@
 import multiprocessing
 
 from CapaConsumoRest.ConsumoCurrencies.CMultiprocesoCurrency import MultiProcesoCurrency, Tarea
-from CapaDatos.Modelos.MConfigLectura import BodyItems
+from CapaDatos.Modelos.MConfigLectura import BodyItems, Currency
 
 
 class ConsultaCurrencies:
 
     def consultarCurrencie(self):
+        # Limpiamos la tabla Currency
+        Currency.query.delete()
         # Obtenemos los diferentes Id's de monedas desde la tabla body_items
         currency_id_lista = BodyItems.distinct_currency_id()
         contadorRegistros = 0

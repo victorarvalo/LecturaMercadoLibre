@@ -9,7 +9,6 @@ from CapaNegocio.Negocio.CreacionLlaves.CreacionLlaves import CreacionLlaves
 from CapaConsumoRest.ConsultaItems.CConsultaItems import  ConsultaItems
 import csv
 def procesamiento(ubicacion_archivo, configuracion_archivo):
-    print(ubicacion_archivo)
     # realizar la lectura del archivo y escritura de datos en la base de datos
     mensaje = leerYGuardarDatos(ubicacion_archivo, configuracion_archivo)
     #Validamos si hay mensaje de error
@@ -22,7 +21,6 @@ def leerYGuardarDatos(ubicacion_archivo, configuracion_archivo):
     extencion_archivo = ubicacion_archivo.split('.')
     if len(extencion_archivo) > 1:
         if extencion_archivo[1] == 'csv':
-            print('excel')
             #Realizamos las validaciones del archivo de Excel
             if ValidarConfiguracion.validaFormato(configuracion_archivo.formato, extencion_archivo[1]):
                 #Realizamos la lectura del archivo para validar el separador
@@ -34,7 +32,6 @@ def leerYGuardarDatos(ubicacion_archivo, configuracion_archivo):
             else:
                 return 'Formato de archivo erroneo'
             csv_archivo = LecturaCSV(ubicacion_archivo)
-            # Pendiente hacer la validación de configuraciones
             csv_archivo.lectura()
             return None
         elif extencion_archivo[1] == 'txt':
